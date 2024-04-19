@@ -1,0 +1,11 @@
+spring.application.name=quiz-service
+server.port = 8081
+
+
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/quiz?useSSL=false
+spring.datasource.username=root
+spring.datasource.password=ABCDE54321@u
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update

@@ -1,0 +1,5 @@
+package com.quiz.quiz.Dao;
+
+public interface QuizDao {
+
+}

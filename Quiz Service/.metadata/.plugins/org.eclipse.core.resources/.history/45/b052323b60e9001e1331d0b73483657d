@@ -1,0 +1,24 @@
+package com.quiz.quiz.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController("/quiz")
+public class QuizController {
+
+	@GetMapping("/get")
+	public String test() {
+		return " Working !";
+	}
+	
+	
+	@PostMapping("/create")
+	public ResponseEntity<String> createQuiz(@RequestParam String catagory, @RequestParam int numQ, @RequestParam String quizTitle){
+		return new ResponseEntity<>("Quiz Created successfully..", HttpStatus.OK);
+	}
+}
+

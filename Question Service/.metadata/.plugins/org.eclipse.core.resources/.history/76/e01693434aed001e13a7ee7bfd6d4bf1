@@ -1,0 +1,21 @@
+package com.quiz.question.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.quiz.question.model.Question;
+
+@Repository
+public interface QuestionDao extends JpaRepository<Question, Integer> {
+
+	List<Question> getQuestionsByCatagory(String catagory);
+	
+//	@Query(value = "SELECT q.id FROM question q WHERE q.catagory=:catagory ORDER BY RANDOM() LIMIT :numQ", nativeQuery = true)
+	
+	@Query("SELECT q.id FROM question q WHERE q.catagory=:catagory ORDER BY RANDOM() LIMIT :numQ")
+	List<Integer> getRandomQuestionsByCatagory(@Param("catagory")String catagory, @Param("numQ") int numQ);
+}

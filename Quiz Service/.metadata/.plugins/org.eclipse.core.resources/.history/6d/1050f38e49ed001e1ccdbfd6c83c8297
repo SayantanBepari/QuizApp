@@ -1,0 +1,39 @@
+package com.quiz.quiz.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.quiz.quiz.Dao.QuizDao;
+import com.quiz.quiz.feign.QuizInterface;
+import com.quiz.quiz.model.Quiz;
+
+@Service
+public class QuizServiceImpl implements QuizService {
+
+	@Autowired
+	QuizDao quizDao;
+	
+	@Autowired
+	QuizInterface quizInterface;
+
+	
+	
+	@Override
+	public ResponseEntity<String> createQuiz(String catagory, int numQ, String title) {
+
+		List<Integer> questions = quizInterface.getQuestionsForQuiz(catagory, numQ).getBody();
+		Quiz quiz = new Quiz();
+		quiz.setTitle(title);
+		quiz.setQuestionIds(questions);
+
+		quizDao.save(quiz);
+
+		return new ResponseEntity<>("Quiz Created !", HttpStatus.CREATED);
+	}
+	
+	
+}

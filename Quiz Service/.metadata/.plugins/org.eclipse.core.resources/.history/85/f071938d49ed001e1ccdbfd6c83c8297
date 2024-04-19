@@ -1,0 +1,8 @@
+package com.quiz.quiz.service;
+
+import org.springframework.http.ResponseEntity;
+
+public interface QuizService {
+
+	public ResponseEntity<String> createQuiz(String catagory, int numQ, String title);
+}

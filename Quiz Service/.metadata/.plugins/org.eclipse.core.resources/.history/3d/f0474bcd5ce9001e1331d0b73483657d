@@ -1,0 +1,7 @@
+package com.quiz.quiz.controller;
+
+
+@Controller
+public class QuizController {
+
+}

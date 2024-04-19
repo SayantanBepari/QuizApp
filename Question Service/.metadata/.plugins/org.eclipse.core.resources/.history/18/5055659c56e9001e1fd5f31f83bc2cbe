@@ -1,0 +1,53 @@
+package com.quiz.question.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.quiz.question.dao.QuestionDao;
+import com.quiz.question.model.Question;
+
+@Service
+public class QuestionServiceImpl implements QuestionService {
+
+	@Autowired
+	QuestionDao questionDao;
+
+	@Override
+	public ResponseEntity<List<Question>> getAllQuestion() {
+		try {
+		return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+	}
+
+	@Override
+	public ResponseEntity<String> addQuestion(Question question) {
+		try {
+			questionDao.save(question);
+			return new ResponseEntity<>("Question saved successfully !", HttpStatus.CREATED);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>("Unable to save question !", HttpStatus.BAD_REQUEST);
+		
+		//return questionDao.findById(question.getId()).get();
+	}
+
+	@Override
+	public ResponseEntity<List<Question>> getQuestionsByCatagory(String catagory) {
+		try {
+			return new ResponseEntity<>(questionDao.getQuestionsByCatagory(catagory), HttpStatus.OK);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(New ArrayList<>(), HttpStatus.OK);
+	}
+
+}

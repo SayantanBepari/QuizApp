@@ -1,0 +1,23 @@
+package com.quiz.question.model;
+
+import lombok.Data;
+
+@Data
+public class Response {
+
+	private Integer questionId;
+	private String response;
+	
+	public Response() {
+		super()_;
+	}
+	
+	public Response(Integer questionId, String response) {
+		super();
+		this.questionId = questionId;
+		this.response = response;
+	}
+	
+	
+	
+}

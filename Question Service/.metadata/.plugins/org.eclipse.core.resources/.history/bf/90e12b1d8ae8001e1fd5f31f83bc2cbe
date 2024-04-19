@@ -1,0 +1,5 @@
+package com.quiz.question.service;
+
+public interface QuestionService {
+
+}
